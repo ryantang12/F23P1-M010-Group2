@@ -1,8 +1,8 @@
 '''
-TASK #5 - BY JACOB BIANCO
-THIS FUNCTION READS IN A TEXT FILE WITH BINARY VALUES AND
-CREATES A NEW FILE THAT CONTAINS THE CHARACTERS FOR THE
-GIVEN FILE
+    TASK #5 - BY JACOB BIANCO
+    THIS FUNCTION READS IN A TEXT FILE WITH BINARY VALUES AND
+    CREATES A NEW FILE THAT CONTAINS THE CHARACTERS FOR THE
+    GIVEN FILE
 '''
 
 
@@ -15,6 +15,7 @@ def bin_to_txt(file_name='BinOutput.txt'):
     f = open(file_name, 'r')        # OPEN FILE
     s = f.read()                    # READ FILE
     f.close()                       # CLOSE FILE
+    print(s)                        
 
     '''
     THE FOLLOWING BLOCK OF CODE REMOVES THE DECIMAL NUMBER AND 
@@ -22,7 +23,7 @@ def bin_to_txt(file_name='BinOutput.txt'):
     '''
     i = s.index(".")             # FINDS INDEX OF PERIOD
     s = [i + 1]                  # SETS "s" EQUAL TO THE BINARY STRING MINUS
-                                 # BEGINNING DECIMAL NUMBER AND PERIOD
+    print(s)                     # BEGINNING DECIMAL NUMBER AND PERIOD
 
     '''
     THE FOLLOWING BLOCK OF CODE LOOPS THROUGH A SEQUENCE OF BINARY
@@ -34,6 +35,7 @@ def bin_to_txt(file_name='BinOutput.txt'):
     while s != '':                            # WHILE "s" IS NOT EQUAL TO AN EMPTY STRING
         bin_str, s = read_and_print_excel(s)  # OUTPUTS FIRST BINARY VALUE AND NEW STRING MINUS BINARY VALUE
     initial += str_to_bin(i)                  # APPENDS CHARACTER VALUE CONVERTED FROM BINARY TO A STRING
+    
     '''
     THE FOLLOWING BLOCK OF CODE PRINTS THE OUTPUTTED CHARACTER STRING
     INTO A TEXT FILE
@@ -41,3 +43,6 @@ def bin_to_txt(file_name='BinOutput.txt'):
     f = open('TextOutput.txt', 'w+')            # OPENS TEXT FILE
     f.write(initial)                            # WRITES STRING INTO TEXT FILE
     f.close()                                   # CLOSES TEXT FILE
+    print(initial)                              # PRINTS CHARACTER STRING
+
+
