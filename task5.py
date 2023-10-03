@@ -44,5 +44,3 @@ def bin_to_txt(file_name='BinOutput.txt'):
     f.write(initial)                            # WRITES STRING INTO TEXT FILE
     f.close()                                   # CLOSES TEXT FILE
     print(initial)                              # PRINTS CHARACTER STRING
-
-
