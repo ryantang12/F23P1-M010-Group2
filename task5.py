@@ -32,8 +32,8 @@ def bin_to_txt(file_name='BinOutput.txt'):
 
     initial = ''
     while s != '':                   # WHILE "s" IS NOT EQUAL TO AN EMPTY STRING
-        bin_str, s = <insertTask3a_Name>(s)  # OUTPUTS FIRST BINARY VALUE AND NEW STRING MINUS BINARY VALUE
-    initial += <insertTask3b_Name>(i)            # APPENDS CHARACTER VALUE CONVERTED FROM BINARY TO A STRING
+        bin_str, s = read_and_print_excel(s)  # OUTPUTS FIRST BINARY VALUE AND NEW STRING MINUS BINARY VALUE
+    initial += str_to_bin(i)            # APPENDS CHARACTER VALUE CONVERTED FROM BINARY TO A STRING
     '''
     THE FOLLOWING BLOCK OF CODE PRINTS THE OUTPUTTED CHARACTER STRING
     INTO A TEXT FILE
