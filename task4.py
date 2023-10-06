@@ -15,7 +15,7 @@ def txt_to_bin (file_name):
     binStr = BinStr + binVal                  #DETERMINE THE NUMBER OF BITS NEEDED TO STORE THE TEXT FILE
   print(binStr)
   numBits = len(binStr)
-  binStr = str(numBits + "." + binStr
+  binStr = str(numBits) + "." + binStr        # "." is use to separate them
 
 #WRITE THE BINARY VALUES TO A FILE NAMED "BinOutput.txt" 
   f = open ("BinOutput.txt", "w+'")
