@@ -78,7 +78,7 @@ def getChar(string):
 
 ###THE FUNCTION READS IN A TEXT FILE AND CREATES A NEW TEXT FILE CALLED "BinOutput.txt" THAT CONTAINS THE BINARY CODES FOR THE GIVEN FILE.###
 # TASK 4 By Jiayuan Zhang (MICHAEL)#
-def txt_to_bin (file_name):
+def txt_to_bin(file_name):
     s = ''
 #TAKE A STRING AS INPUT TO THE FUNCTION
     f = open (file_name, "r")                    #OPEN THE FILE
@@ -104,7 +104,7 @@ def txt_to_bin (file_name):
 
 #WRITE THE BINARY VALUES TO A FILE NAMED "BinOutput.txt" 
     f = open ("BinOutput.txt", "w+'")
-    f.wrtie(binStr)
+    f.write(binStr)
     f.close()
     print(binStr)
 
