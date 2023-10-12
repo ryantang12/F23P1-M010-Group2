@@ -1,8 +1,5 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-# By: Ryan Tang
 # This function will read an excel file and print out the corresponding character and it's binary conversion
-
+# TASK #1
 import pandas as pd
 
 def read_and_print_excel(file):
@@ -15,10 +12,12 @@ def read_and_print_excel(file):
 
 print(read_and_print_excel("F23P1-M010-Group2.xlsx")) # prints the characters in the file
 
-   # This function will read in a string and return the corresponding binary value for that string.
- 
 
 
+
+   
+# This function will read in a string and return the corresponding binary value for that string
+# TASK #2
 def str_to_bin(word):
     wb = pd.read_excel("F23P1-M010-Group2.xlsx", dtype=str)
     bins = list(wb["binList"])
@@ -48,9 +47,13 @@ def str_to_bin(word):
             
 print(str_to_bin('a'))
 print(str_to_bin('b'))
-print(str_to_bin('te'))         
+print(str_to_bin('te'))        
 
 
+
+
+
+# TASK #3
 # This function reads in a string of binary values and returns the first binary value in the string as well as the string minus the frist binary value
 def getBFirstBin(string):
     flag = string[0]
@@ -71,6 +74,7 @@ def getChar(string):
     chars = list(wb["charList"]) # stores the characters in a list
     i = bins.index(string)
     return chars[i]
+
 
 
 
@@ -110,6 +114,13 @@ def txt_to_bin (file_name):
 
 
 
+
+'''
+    TASK #5 - BY JACOB BIANCO
+    THIS FUNCTION READS IN A TEXT FILE WITH BINARY VALUES AND
+    CREATES A NEW FILE THAT CONTAINS THE CHARACTERS FOR THE
+    GIVEN FILE
+'''
 
 def bin_to_txt(file_name='BinOutput.txt'):
     '''
