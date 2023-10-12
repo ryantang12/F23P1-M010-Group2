@@ -125,18 +125,18 @@ def bin_to_txt(file_name='BinOutput.txt'):
     THEN CLOSES THE FILE
     '''
 
-    f = open(file_name, 'r')        # OPEN FILE
-    s = f.read()                    # READ FILE
-    f.close()                       # CLOSE FILE
+    f = open(file_name, 'r')        
+    s = f.read()                    
+    f.close()                    
     print(s)                        
 
     '''
     THE FOLLOWING BLOCK OF CODE REMOVES THE DECIMAL NUMBER AND 
     PERIOD FROM THE BEGINNING OF THE STRING 
     '''
-    i = s.index(".")             # FINDS INDEX OF PERIOD
-    s = [i + 1]                  # SETS "s" EQUAL TO THE BINARY STRING MINUS
-    print(s)                     # BEGINNING DECIMAL NUMBER AND PERIOD
+    i = s.index(".")             
+    s = [i + 1]                 
+    print(s)                   
 
     '''
     THE FOLLOWING BLOCK OF CODE LOOPS THROUGH A SEQUENCE OF BINARY
@@ -145,16 +145,16 @@ def bin_to_txt(file_name='BinOutput.txt'):
     '''
 
     initial = ''
-    while s != '':                            # WHILE "s" IS NOT EQUAL TO AN EMPTY STRING
-        bin_str, s = read_and_print_excel(s)  # OUTPUTS FIRST BINARY VALUE AND NEW STRING MINUS BINARY VALUE
-    initial += str_to_bin(i)                  # APPENDS CHARACTER VALUE CONVERTED FROM BINARY TO A STRING
+    while s != '':                          
+        bin_str, s = getBFirstBin(s)  
+    initial += getChar(i)                  
     
     '''
     THE FOLLOWING BLOCK OF CODE PRINTS THE OUTPUTTED CHARACTER STRING
     INTO A TEXT FILE
     '''
-    f = open('TextOutput.txt', 'w+')            # OPENS TEXT FILE
-    f.write(initial)                            # WRITES STRING INTO TEXT FILE
-    f.close()                                   # CLOSES TEXT FILE
-    print(initial)                              # PRINTS CHARACTER STRING
+    f = open('TextOutput.txt', 'w+')            
+    f.write(initial)                            
+    f.close()                                 
+    print(initial)                              
 
