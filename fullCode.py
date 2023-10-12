@@ -2,15 +2,12 @@
 # TASK #1
 import pandas as pd
 
-def read_and_print_excel(file):
-	wb = pd.read_excel(file, dtype=str)
-	bins = list(wb["binList"]) # stores the binary numbers in a list
-	chars = list(wb["charList"]) # stores the characters in a list
+wb = pd.read_excel(file, dtype=str)
+bins = list(wb["binList"]) # stores the binary numbers in a list
+chars = list(wb["charList"]) # stores the characters in a list
 
-	for i in range(len(bins)):
-		print(bins[i], "; ", chars[i])
-
-print(read_and_print_excel("F23P1-M010-Group2.xlsx")) # prints the characters in the file
+for i in range(len(bins)):
+	print(bins[i], "; ", chars[i])
 
 
 
