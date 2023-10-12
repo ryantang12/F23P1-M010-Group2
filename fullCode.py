@@ -147,7 +147,7 @@ def bin_to_txt(file_name='BinOutput.txt'):
     initial = ''
     while s != '':                          
         bin_str, s = getBFirstBin(s)  
-    initial += getChar(i)                  
+    initial += getChar(binVal)                  
     
     '''
     THE FOLLOWING BLOCK OF CODE PRINTS THE OUTPUTTED CHARACTER STRING
