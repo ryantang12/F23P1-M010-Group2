@@ -19,11 +19,11 @@ print(read_and_print_excel("F23P1-M010-Group2.xlsx")) # prints the characters in
  
 
 
-
 def str_to_bin(word):
     wb = pd.read_excel("F23P1-M010-Group2.xlsx", dtype=str)
     bins = list(wb["binList"])
     chars = list(wb["charList"])
+    
     
     existing_double_char_list = ["th", "er", "on", "ss", "en", "te", "de"]
     existing_double_int_list = [1111001, 1111010, 1111011, 1111100, 1111101, 1111110]
@@ -32,27 +32,23 @@ def str_to_bin(word):
     binary = 0
     count = 0
     newWord = ""
+    
+    if len(newWord) > 1: # if the character being converted is more than one character run this statment
+        for i in range(len(existing_double_char_list)):
+            if newWord in existing_double_char_list:
+                binary = existing_double_int_list[i]
+    
     for i in range(len(bins)): # adds the character in a list to 
         if word == chars[i]:
             newWord = newWord + chars[i] # for if statement at the bottom
             newList.append([bins[i]]) # list to take binary from
         count = count + 1
     binary = newList[0]
-    
-    
-    number = 0 # This is the number that acts as a count variable
-    if len(newWord) > 1: # if the character being converted is more than one character run this statment
-        for i in range(len(existing_double_char_list)):
-            if newWord in existing_double_char_list:
-                binary = existing_double_int_list[i]
-            return binary
+    return binary
             
 print(str_to_bin('a'))
 print(str_to_bin('b'))
-print(str_to_bin('er'))        
-
-
-
+print(str_to_bin('te'))         
 
 
 # This function reads in a string of binary values and returns the first binary value in the string as well as the string minus the frist binary value
