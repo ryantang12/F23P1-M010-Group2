@@ -1,4 +1,4 @@
-def compare_files(file1_name, file2_name="TextOutput.txt") -> bool:
+def compare_files(file1_name:str , file2_name:str ="TextOutput.txt") -> bool:
     try:
         # Open the first file and read its contents
         with open(file1_name, 'r') as file1:
