@@ -1,0 +1,22 @@
+# This function reads in a string of binary values and returns the first binary value in the string as well as the string minus the frist binary value
+
+def getBFirstBin(string):
+    flag = string[0]
+    
+    if flag == "0": # this is the short binary value
+        binVal = string[0:5] # short char = 5
+        string = string[5:]
+    else: # this is a long binary value
+        binVal = string[0:7] # long char = 7
+        string = string[7:]
+    return binVal, string
+
+
+# This function takes a binary value as input and returns the char for that binary value
+
+def getChar(string):
+    wb = pd.read_excel(file, dtype=str)
+    bins = list(wb["binList"]) # stores the binary numbers in a list
+	chars = list(wb["charList"]) # stores the characters in a list
+    i = bins.index(string)
+    return chars[i]
