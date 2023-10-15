@@ -1,4 +1,4 @@
-def compare_files(file1_name:str , file2_name:str ="TextOutput.txt") -> bool:
+def compare_files(file1_name: str, file2_name: str = "TextOutput.txt") -> bool:
     try:
         # Open the first file and read its contents
         with open(file1_name, 'r') as file1:
@@ -14,7 +14,12 @@ def compare_files(file1_name:str , file2_name:str ="TextOutput.txt") -> bool:
         else:
             return False
 
-def are_strings_identical(string1, string2):
+    except FileNotFoundError:
+        print("One or both files not found.")
+        return False
+
+
+def are_strings_identical(string1: str, string2: str) -> bool:
     # Check if the lengths of the two strings are the same
     if len(string1) != len(string2):
         return False
