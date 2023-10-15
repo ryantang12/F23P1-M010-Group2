@@ -13,13 +13,19 @@ wb = pd.read_excel("F23P1-M010-Group2.xlsx", dtype=str)
 bins = list(wb["binList"]) # stores the binary numbers in a list
 chars = list(wb["charList"]) # stores the characters in a list
 
+try:
+    i = chars.ndex("\\n")
+    chars[i] = "\n"
+except:
+    print("\\n was not found")
+
 for i in range(len(bins)):
 	print(bins[i], "; ", chars[i])
 
 
 
 
-   
+# Ryan Tang
 # This function will read in a string and return the corresponding binary value for that string
 # TASK #2
 def str_to_bin(word):   
@@ -82,7 +88,7 @@ def getChar(string):
 
 
 ###THE FUNCTION READS IN A TEXT FILE AND CREATES A NEW TEXT FILE CALLED "BinOutput.txt" THAT CONTAINS THE BINARY CODES FOR THE GIVEN FILE.###
-# TASK 4 By Jiayuan Zhang (MICHAEL)#
+# TASK 4 By Jiayuan Zhang (MICHAEL)# (updated by Ryan)
 def txt_to_bin(file_name):
 #TAKE A STRING AS INPUT TO THE FUNCTION
     f = open (file_name, "r")                    #OPEN THE FILE
@@ -112,7 +118,8 @@ def txt_to_bin(file_name):
     f.close()
     print(binStr)
 
-print(txt_to_bin('Hill.txt'))
+print(txt_to_bin("Hill.txt"))
+print(txt_to_bin("alma_mater.txt"))
 
 """
     TASK #5 - BY JACOB BIANCO
@@ -138,7 +145,7 @@ def bin_to_txt(file_name='BinOutput.txt'):
     PERIOD FROM THE BEGINNING OF THE STRING 
     '''
     i = s.index(".")
-    s = [i + 1]
+    s = s[i + 1:]
     print(s)
 
     '''
@@ -147,19 +154,19 @@ def bin_to_txt(file_name='BinOutput.txt'):
     BINARY VALUE AND OUTPUTS A CHARACTER STRING
     '''
 
-    initial = ''
+    charStr = ''
     while s != '':
         binval, s = getFirstBin(s)
-    initial += getChar(binval)
+        charStr = charStr + getChar(binval)
 
     '''
     THE FOLLOWING BLOCK OF CODE PRINTS THE OUTPUTTED CHARACTER STRING
     INTO A TEXT FILE
     '''
     f = open('TextOutput.txt', 'w+')
-    f.write(initial)
+    f.write(charStr)
     f.close()
-    print(initial)
+    print(charStr)
     
 print(bin_to_txt('BinOutput.txt'))
 
