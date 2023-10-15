@@ -60,7 +60,7 @@ print(str_to_bin('"hello"'))
 
 # TASK #3
 # This function reads in a string of binary values and returns the first binary value in the string as well as the string minus the frist binary value
-def getBFirstBin(string: str):
+def getFirstBin(string: str):
     flag = string[0]
     
     if flag == "0": # this is the short binary value
@@ -149,7 +149,7 @@ def bin_to_txt(file_name='BinOutput.txt'):
 
     initial = ''
     while s != '':
-        binval, s = getBFirstBin(s)
+        binval, s = getFirstBin(s)
     initial += getChar(binval)
 
     '''
