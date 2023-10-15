@@ -15,36 +15,39 @@ for i in range(len(bins)):
    
 # This function will read in a string and return the corresponding binary value for that string
 # TASK #2
-def str_to_bin(word):
-    wb = pd.read_excel("F23P1-M010-Group2.xlsx", dtype=str)
-    bins = list(wb["binList"])
-    chars = list(wb["charList"])
-    
-    
+def str_to_bin(word):   
     existing_double_char_list = ["th", "er", "on", "ss", "en", "te", "de"]
-    existing_double_int_list = [1111001, 1111010, 1111011, 1111100, 1111101, 1111110]
+    existing_double_int_list = [1111001, 1111010, 1111011, 1111100, 1111101, 1111110, 1111111]
     newList = []
     
     binary = 0
     count = 0
-    newWord = ""
+    newWord = word[0]
+    check_word = word[0] + word[1]
+        
     
-    if len(newWord) > 1: # if the character being converted is more than one character run this statment
-        for i in range(len(existing_double_char_list)):
-            if newWord in existing_double_char_list:
-                binary = existing_double_int_list[i]
     
     for i in range(len(bins)): # adds the character in a list to 
-        if word == chars[i]:
-            newWord = newWord + chars[i] # for if statement at the bottom
+        if newWord == chars[i]:
             newList.append([bins[i]]) # list to take binary from
         count = count + 1
     binary = newList[0]
-    return binary
+    newWord = word[1:]
+    
+    # if the character being converted is more than one character run this statment
+    if check_word in existing_double_char_list:
+        for i in range(len(existing_double_char_list)):
+            if check_word == existing_double_char_list[i]:
+                binary = existing_double_int_list[i]
+    
+    print(newWord)
+    print(binary)
+    
+    return binary, newWord
             
-print(str_to_bin('a'))
-print(str_to_bin('b'))
-print(str_to_bin('te'))        
+print(str_to_bin('hello'))
+print(str_to_bin('one'))
+print(str_to_bin('death'))        
 
 
 
