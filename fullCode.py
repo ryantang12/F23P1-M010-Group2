@@ -37,16 +37,6 @@ for i in range(len(bins)):
 def str_to_bin(word):   
     binary = 0
     newWord = ""
-    
-    # if word[0] == " ":
-    #     binary = "1110101"
-    #     newWord = word[1:]
-    #     return binary, newWord
-    
-    # if word[0:2] == "\n":
-    #     binary = "1110100"
-    #     newWord = word[2:]
-    #     return binary, newWord
             
     if len(word) >= 2:
         for i in range(len(chars)):
@@ -128,8 +118,8 @@ def txt_to_bin(file_name):
     f.close()
     print(binStr)
 
-# print(txt_to_bin("Hill.txt"))
-print(txt_to_bin("alma_mater.txt"))
+print(txt_to_bin("Hill.txt"))
+# print(txt_to_bin("alma_mater.txt"))
 
 """
     TASK #5 - BY JACOB BIANCO
@@ -200,6 +190,9 @@ def compare_files(file1_name: str, file2_name: str = "TextOutput.txt") -> bool:
     except FileNotFoundError:
         print("One or both files not found.")
         return False
+    
+print(compare_files("Hill.txt", "TextOutput.txt"))
+print(compare_files("alma_mater.txt", "TextOutput.txt"))
 
 
 def are_strings_identical(string1: str, string2: str) -> bool:
@@ -214,4 +207,7 @@ def are_strings_identical(string1: str, string2: str) -> bool:
 
     # If the loop completes without finding any differences, the strings are identical
     return True
+
+print(are_strings_identical("hello", "hello"))
+print(are_strings_identical("hello", "no"))
 
