@@ -6,7 +6,7 @@ Created on Sun Oct 15 16:14:25 2023
 """
 
 # This function will read an excel file and print out the corresponding character and it's binary conversion
-# TASK #1
+# TASK #1 (Ryan)
 import pandas as pd
 
 wb = pd.read_excel("F23P1-M010-Group2.xlsx", dtype=str)
@@ -14,10 +14,16 @@ bins = list(wb["binList"]) # stores the binary numbers in a list
 chars = list(wb["charList"]) # stores the characters in a list
 
 try:
-    i = chars.ndex("\\n")
+    i = chars.index("\\n")
     chars[i] = "\n"
 except:
     print("\\n was not found")
+    
+try:
+    i = chars.index("<space>")
+    chars[i] = " "
+except:
+    print("<space> was not found")
 
 for i in range(len(bins)):
 	print(bins[i], "; ", chars[i])
@@ -30,30 +36,34 @@ for i in range(len(bins)):
 # TASK #2
 def str_to_bin(word):   
     binary = 0
-    newWord = word[0]
+    newWord = ""
     
-    if word[0] == " ":
-        binary = "1110101"
-        newWord = word[1:]
-        return binary, newWord
+    # if word[0] == " ":
+    #     binary = "1110101"
+    #     newWord = word[1:]
+    #     return binary, newWord
     
-    if word[0:2] == "\n":
-        binary = "1110100"
-        newWord = word[2:]
-        return binary, newWord
+    # if word[0:2] == "\n":
+    #     binary = "1110100"
+    #     newWord = word[2:]
+    #     return binary, newWord
             
     if len(word) >= 2:
         for i in range(len(chars)):
-            if word[0:2] == chars[i]:
-                binary = bins[i]
+            newWord = word[0:2]
+            if newWord == chars[i]:
                 newWord = word[2:]
+                binary = bins[i]
                 return binary, newWord
         
     if len(word) >= 1:
         for i in range(len(chars)):
             if chars[i] == word[0]:
+                if len(word) > 1:
+                    newWord = word[1:]
+                else:
+                    newWord = ""
                 binary = bins[i]
-                newWord = word[1:]
                 return binary, newWord
             
 print(str_to_bin('\n'))
@@ -64,7 +74,7 @@ print(str_to_bin('"hello"'))
 
 
 
-# TASK #3
+# TASK #3 (Ryan)
 # This function reads in a string of binary values and returns the first binary value in the string as well as the string minus the frist binary value
 def getFirstBin(string: str):
     flag = string[0]
@@ -118,7 +128,7 @@ def txt_to_bin(file_name):
     f.close()
     print(binStr)
 
-print(txt_to_bin("Hill.txt"))
+# print(txt_to_bin("Hill.txt"))
 print(txt_to_bin("alma_mater.txt"))
 
 """
