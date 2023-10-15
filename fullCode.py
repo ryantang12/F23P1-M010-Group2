@@ -14,10 +14,16 @@ bins = list(wb["binList"]) # stores the binary numbers in a list
 chars = list(wb["charList"]) # stores the characters in a list
 
 try:
-    i = chars.index("\\n")
+    i = chars.index("\n")
     chars[i] = "\n"
 except:
-    print("\\n was not found")
+    print("\n was not found")
+    
+try:
+    i = chars.index(" '")
+    chars[i] = "'"
+except:
+    print("' was not found")
     
 try:
     i = chars.index("<space>")
@@ -37,14 +43,19 @@ for i in range(len(bins)):
 def str_to_bin(word):   
     binary = 0
     newWord = ""
+    
+    if word[0:2] == "\n":
+        binary = "1110100"
+        newWord = word[2:]
+        return binary, newWord
             
     if len(word) >= 2:
         for i in range(len(chars)):
-            newWord = word[0:2]
-            if newWord == chars[i]:
-                newWord = word[2:]
+            s = word[0:2]
+            if s == chars[i]:
+                word = word[2:]
                 binary = bins[i]
-                return binary, newWord
+                return binary, word
         
     if len(word) >= 1:
         for i in range(len(chars)):
@@ -61,6 +72,7 @@ print(str_to_bin('one'))
 print(str_to_bin('ssep'))     
 print(str_to_bin(' '))
 print(str_to_bin('"hello"')) 
+print(str_to_bin("hello"))
 
 
 
@@ -99,11 +111,9 @@ def txt_to_bin(file_name):
     print(s)
 #FUNCTION FIND ALL THE BINARY CODES FOR THE GIVEN TEXT FILE
     binStr = ''
-    numBits = 0
-    binVal = 0
     
     while (s != ''):
-        # print(binStr, '\n', s1) 
+        # print(binStr, '\n', s) 
         binVal, s = str_to_bin(s)
         binStr = binStr + binVal                  #DETERMINE THE NUMBER OF BITS NEEDED TO STORE THE TEXT FILE
         
