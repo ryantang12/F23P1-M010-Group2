@@ -2,7 +2,7 @@
 # TASK #1
 import pandas as pd
 
-wb = pd.read_excel(file, dtype=str)
+wb = pd.read_excel("F23P1-M010-Group2.xlsx", dtype=str)
 bins = list(wb["binList"]) # stores the binary numbers in a list
 chars = list(wb["charList"]) # stores the characters in a list
 
@@ -21,7 +21,6 @@ def str_to_bin(word):
     newList = []
     
     binary = 0
-    count = 0
     newWord = word[0]
     check_word = word[0] + word[1]
         
@@ -30,8 +29,7 @@ def str_to_bin(word):
     for i in range(len(bins)): # adds the character in a list to 
         if newWord == chars[i]:
             newList.append([bins[i]]) # list to take binary from
-        count = count + 1
-    binary = newList[0]
+            binary = bins[i]
     newWord = word[1:]
     
     # if the character being converted is more than one character run this statment
@@ -39,6 +37,7 @@ def str_to_bin(word):
         for i in range(len(existing_double_char_list)):
             if check_word == existing_double_char_list[i]:
                 binary = existing_double_int_list[i]
+        newWord = word[2:]
     
     print(newWord)
     print(binary)
@@ -47,9 +46,7 @@ def str_to_bin(word):
             
 print(str_to_bin('hello'))
 print(str_to_bin('one'))
-print(str_to_bin('death'))        
-
-
+print(str_to_bin('ssep'))        
 
 
 
@@ -69,9 +66,6 @@ def getBFirstBin(string):
 
 # This function takes a binary value as input and returns the char for that binary value
 def getChar(string):
-    wb = pd.read_excel("F23P1-M010-Group2.xlsx", dtype=str)
-    bins = list(wb["binList"]) # stores the binary numbers in a list
-    chars = list(wb["charList"]) # stores the characters in a list
     i = bins.index(string)
     return chars[i]
 
@@ -95,11 +89,10 @@ def txt_to_bin(file_name):
     numBits = 0
     binVal = 0
     BinStr = ''
-    getBin = 0
     
     while (s != ''):
         print(binStr, '\n', s1) 
-        binVals, s = getBin(s1)
+        binVal, s = str_to_bin(s1)
         binStr = BinStr + binVal                  #DETERMINE THE NUMBER OF BITS NEEDED TO STORE THE TEXT FILE
         print(binStr)
         numBits = len(binStr)
@@ -110,6 +103,8 @@ def txt_to_bin(file_name):
     f.write(binStr)
     f.close()
     print(binStr)
+
+print(txt_to_bin("Hill.txt"))
 
 """
     TASK #5 - BY JACOB BIANCO
@@ -157,34 +152,37 @@ def bin_to_txt(file_name='BinOutput.txt'):
     f.write(initial)
     f.close()
     print(initial)
+    
+print(bin_to_txt('BinOutput.txt'))
 
 
-# TASK 6
-def compare_files(file1_name:str , file2_name:str ="TextOutput.txt") -> bool:
-    try:
-        # Open the first file and read its contents
-        with open(file1_name, 'r') as file1:
-            content1 = file1.read()
+# def compare_files(file1_name:str , file2_name:str ="TextOutput.txt") -> bool:
+#     try:
+#         # Open the first file and read its contents
+#         with open(file1_name, 'r') as file1:
+#             content1 = file1.read()
 
-        # Open the second file and read its contents
-        with open(file2_name, 'r') as file2:
-            content2 = file2.read()
+#         # Open the second file and read its contents
+#         with open(file2_name, 'r') as file2:
+#             content2 = file2.read()
 
-        # Check if the contents of the two files are identical
-        if content1 == content2:
-            return True
-        else:
-            return False
+#         # Check if the contents of the two files are identical
+#         if content1 == content2:
+#             return True
+#         else:
+#             return False
 
-def are_strings_identical(string1, string2):
-    # Check if the lengths of the two strings are the same
-    if len(string1) != len(string2):
-        return False
 
-    # Go through the characters of both strings and compare them
-    for i in range(len(string1)):
-        if string1[i] != string2[i]:
-            return False
 
-    # If the loop completes without finding any differences, the strings are identical
-    return True
+# def are_strings_identical(string1:str, string2:str) -> bool:
+#     # Check if the lengths of the two strings are the same
+#     if len(string1) != len(string2):
+#         return False
+
+#     # Go through the characters of both strings and compare them
+#     for i in range(len(string1)):
+#         if string1[i] != string2[i]:
+#             return False
+
+#     # If the loop completes without finding any differences, the strings are identical
+#     return True
