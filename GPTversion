@@ -136,31 +136,30 @@ print(result)
     GIVEN FILE
 """
 
-def bin_to_txt(file_name='BinOutput.txt'):
+def bin_to_txt(file_name='BinOutput.txt', num_bits=8):
     try:
         # Open the file and read its content
         with open(file_name, 'r') as file:
-            s = file.read()
+            binary_str = file.read()
     except FileNotFoundError:
         return "Input file not found."
 
-    # Find the position of the period and remove it along with the number
-    i = s.index(".")
-    s = s[i + 1:]
+    # Split the binary string into fixed-size chunks (num_bits bits each)
+    binary_chunks = [binary_str[i:i+num_bits] for i in range(0, len(binary_str), num_bits)]
 
-    charStr = ''
-    while s:
-        # Get the first 8 characters as a binary value
-        binval, s = s[:8], s[8:]
-        # Convert the binary value to a character
-        char = chr(int(binval, 2))
-        charStr += char
+    # Convert each chunk to a character and join them into a string
+    char_str = ''.join(chr(int(chunk, 2)) for chunk in binary_chunks)
 
     # Write the character values to a text file
     with open('TextOutput.txt', 'w') as output_file:
-        output_file.write(charStr)
+        output_file.write(char_str)
 
     return f"Text representation saved in 'TextOutput.txt'."
+
+# Example usage:
+result = bin_to_txt('BinOutput.txt', num_bits=8)  # Assuming 8 bits per character
+print(result)
+
 
 # Example usage:
 result = bin_to_txt('BinOutput.txt')
