@@ -14,7 +14,7 @@ bins = list(wb["binList"]) # stores the binary numbers in a list
 chars = list(wb["charList"]) # stores the characters in a list
 
 try:
-    i = chars.index("\n")
+    i = chars.index("\\n")
     chars[i] = "\n"
 except:
     print("\n was not found")
@@ -44,10 +44,10 @@ def str_to_bin(word):
     binary = 0
     newWord = ""
     
-    if word[0:2] == "\n":
-        binary = "1110100"
-        newWord = word[2:]
-        return binary, newWord
+    # if word[0:2] == "\n":
+    #     binary = "1110100"
+    #     newWord = word[2:]
+    #     return binary, newWord
             
     if len(word) >= 2:
         for i in range(len(chars)):
@@ -71,7 +71,7 @@ print(str_to_bin('\n'))
 print(str_to_bin('one'))
 print(str_to_bin('ssep'))     
 print(str_to_bin(' '))
-print(str_to_bin('"hello"')) 
+print(str_to_bin("'hello'")) 
 print(str_to_bin("hello"))
 
 
@@ -92,8 +92,14 @@ def getFirstBin(string: str):
 
 # This function takes a binary value as input and returns the char for that binary value
 def getChar(string):
-    i = bins.index(string)
-    return chars[i]
+    try:
+        i = bins.index(string)
+        charVal = chars[i]
+    except:
+        charVal = ''
+    return charVal
+    # i = bins.index(string)
+    # return chars[i]
 
 
 
@@ -128,8 +134,8 @@ def txt_to_bin(file_name):
     f.close()
     print(binStr)
 
-print(txt_to_bin("Hill.txt"))
-# print(txt_to_bin("alma_mater.txt"))
+# print(txt_to_bin("Hill.txt"))
+print(txt_to_bin("alma_mater.txt"))
 
 """
     TASK #5 - BY JACOB BIANCO
