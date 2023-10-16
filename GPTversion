@@ -1,0 +1,203 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Sun Oct 15 16:14:25 2023
+
+@author: ryan_
+"""
+
+# This function will read an excel file and print out the corresponding character and it's binary conversion
+# TASK #1 (Ryan)
+import pandas as pd
+
+wb = pd.read_excel("F23P1-M010-Group2.xlsx", dtype=str)
+bins = list(wb["binList"]) # stores the binary numbers in a list
+chars = list(wb["charList"]) # stores the characters in a list
+
+try:
+    i = chars.index("\\n")
+    chars[i] = "\n"
+except:
+    print("\\n was not found")
+    
+try:
+    i = chars.index("<space>")
+    chars[i] = " "
+except:
+    print("<space> was not found")
+
+for i in range(len(bins)):
+	print(bins[i], "; ", chars[i])
+
+
+
+
+# Ryan Tang
+# This function will read in a string and return the corresponding binary value for that string
+# TASK #2
+def str_to_bin(word):   
+    binary = 0
+    newWord = ""
+    
+    # if word[0] == " ":
+    #     binary = "1110101"
+    #     newWord = word[1:]
+    #     return binary, newWord
+    
+    # if word[0:2] == "\n":
+    #     binary = "1110100"
+    #     newWord = word[2:]
+    #     return binary, newWord
+            
+    if len(word) >= 2:
+        for i in range(len(chars)):
+            newWord = word[0:2]
+            if newWord == chars[i]:
+                newWord = word[2:]
+                binary = bins[i]
+                return binary, newWord
+        
+    if len(word) >= 1:
+        for i in range(len(chars)):
+            if chars[i] == word[0]:
+                if len(word) > 1:
+                    newWord = word[1:]
+                else:
+                    newWord = ""
+                binary = bins[i]
+                return binary, newWord
+            
+print(str_to_bin('\n'))
+print(str_to_bin('one'))
+print(str_to_bin('ssep'))     
+print(str_to_bin(' '))
+print(str_to_bin('"hello"')) 
+
+
+
+# TASK #3 (Ryan)
+# This function reads in a string of binary values and returns the first binary value in the string as well as the string minus the frist binary value
+def getFirstBin(string: str):
+    flag = string[0]
+    
+    if flag == "0": # this is the short binary value
+        binVal = string[0:5] # short char = 5
+        string = string[5:]
+    else: # this is a long binary value
+        binVal = string[0:7] # long char = 7
+        string = string[7:]
+    return binVal, string
+
+
+# This function takes a binary value as input and returns the char for that binary value
+def getChar(string):
+    try: 
+        i = bins.index(string)
+        charVal = chars[i]
+    except:
+        charVal = ""
+    return charVal
+    
+
+
+
+
+
+def txt_to_bin(file_name):
+    # Open the file and read its content
+    try:
+        with open(file_name, "r") as file:
+            text_content = file.read()
+    except FileNotFoundError:
+        return "Input file not found."
+
+    # Function to find all the binary codes for the given text file
+    binStr = ''
+    for char in text_content:
+        binStr += format(ord(char), '08b')
+
+    # Determine the number of bits needed to store the text file
+    numBits = len(binStr)
+
+    # Write the binary values to "BinOutput.txt"
+    with open("BinOutput.txt", "w") as output_file:
+        output_file.write(f"{numBits}.{binStr}")
+
+    return f"Binary representation saved in 'BinOutput.txt'."
+
+# Example usage:
+result = txt_to_bin("alma_mater.txt")
+print(result)
+
+
+"""
+    TASK #5 - BY JACOB BIANCO
+    THIS FUNCTION READS IN A TEXT FILE WITH BINARY VALUES AND
+    CREATES A NEW FILE THAT CONTAINS THE CHARACTERS FOR THE
+    GIVEN FILE
+"""
+
+def bin_to_txt(file_name='BinOutput.txt'):
+    try:
+        # Open the file and read its content
+        with open(file_name, 'r') as file:
+            s = file.read()
+    except FileNotFoundError:
+        return "Input file not found."
+
+    # Find the position of the period and remove it along with the number
+    i = s.index(".")
+    s = s[i + 1:]
+
+    charStr = ''
+    while s:
+        # Get the first 8 characters as a binary value
+        binval, s = s[:8], s[8:]
+        # Convert the binary value to a character
+        char = chr(int(binval, 2))
+        charStr += char
+
+    # Write the character values to a text file
+    with open('TextOutput.txt', 'w') as output_file:
+        output_file.write(charStr)
+
+    return f"Text representation saved in 'TextOutput.txt'."
+
+# Example usage:
+result = bin_to_txt('BinOutput.txt')
+print(result)
+
+
+
+def compare_files(file1_name: str, file2_name: str = "TextOutput.txt") -> bool:
+    try:
+        # Open the first file and read its contents
+        with open(file1_name, 'r') as file1:
+            content1 = file1.read()
+
+        # Open the second file and read its contents
+        with open(file2_name, 'r') as file2:
+            content2 = file2.read()
+
+        # Check if the contents of the two files are identical
+        if content1 == content2:
+            return True
+        else:
+            return False
+
+    except FileNotFoundError:
+        print("One or both files not found.")
+        return False
+
+
+def are_strings_identical(string1: str, string2: str) -> bool:
+    # Check if the lengths of the two strings are the same
+    if len(string1) != len(string2):
+        return False
+
+    # Go through the characters of both strings and compare them
+    for i in range(len(string1)):
+        if string1[i] != string2[i]:
+            return False
+
+    # If the loop completes without finding any differences, the strings are identical
+    return True
